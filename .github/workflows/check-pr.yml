@@ -1,0 +1,28 @@
+name: Check PR
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint Code
+        run: |
+          echo Linting code
+
+      - name: Test Code
+        run: |
+          echo Testing code
+
+  build:
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build code
+        run: |
+          echo Building code

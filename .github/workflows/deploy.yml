@@ -1,5 +1,5 @@
 name: Generic Deployment
-# run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+
 on:
   workflow_call:
     inputs:
