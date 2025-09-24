@@ -13,7 +13,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     concurrency: deployment-${{inputs.env}}
-    name: DEPLOYMENT TO ${{inputs.env}}
+    name: Deploy to ${{inputs.env}}
     environment:
       name: ${{ inputs.env }}
       url: ${{ inputs.env_url }}

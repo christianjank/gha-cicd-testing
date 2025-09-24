@@ -32,7 +32,6 @@ jobs:
   deploy_dev:
     needs: build
     uses: ./.github/workflows/deploy.yml
-    name: Deploy to Dev
     with:
       env: dev
       env_url: https://example.com/dev
@@ -40,7 +39,6 @@ jobs:
   deploy_staging:
     needs: deploy_dev
     uses: ./.github/workflows/deploy.yml
-    name: Deploy to staging
     with:
       env: staging
       env_url: https://example.com/staging
@@ -48,7 +46,6 @@ jobs:
   deploy_prod:
     needs: deploy_staging
     uses: ./.github/workflows/deploy.yml
-    name: Deploy to production
     with:
       env: production
       env_url: https://example.com/production
