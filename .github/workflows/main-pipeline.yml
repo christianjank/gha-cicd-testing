@@ -1,0 +1,54 @@
+name: CI/CD Main Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint Code
+        run: |
+          echo Linting code
+
+      - name: Test Code
+        run: |
+          echo Testing code
+
+
+  build:
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build code
+        run: |
+          echo Building code
+
+  deploy_dev:
+    needs: build
+    uses: ./.github/workflows/deploy.yml
+    name: Deploy to Dev
+    with:
+      env: dev
+      env_url: https://example.com/dev
+
+  deploy_staging:
+    needs: deploy_dev
+    uses: ./.github/workflows/deploy.yml
+    name: Deploy to staging
+    with:
+      env: staging
+      env_url: https://example.com/staging
+
+  deploy_prod:
+    needs: deploy_staging
+    uses: ./.github/workflows/deploy.yml
+    name: Deploy to production
+    with:
+      env: production
+      env_url: https://example.com/production

@@ -1,0 +1,25 @@
+name: Generic Deployment
+# run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+on:
+  workflow_call:
+    inputs:
+      env:
+        required: true
+        type: string
+      env_url:
+        required: true
+        type: string
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    concurrency: deployment-${{inputs.env}}
+    name: DEPLOYMENT TO ${{inputs.env}}
+    environment:
+      name: ${{ inputs.env }}
+      url: ${{ inputs.env_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy
+        run: |
+          echo Deployed to ${{ inputs.env }} reachable at ${{ inputs.env_url }}
