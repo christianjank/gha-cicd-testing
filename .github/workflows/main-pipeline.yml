@@ -1,5 +1,5 @@
 name: CI/CD Main Pipeline
-
+run-name: "${{github.triggering_actor}} - ${{github.sha}} - ${{github.head_ref}}"
 on:
   push:
     branches: [ "main" ]
