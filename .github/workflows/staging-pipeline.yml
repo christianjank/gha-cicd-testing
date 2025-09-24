@@ -1,0 +1,20 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy to staging
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    environment:
+      name: staging
+      url: https://example.com
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy
+        run: |
+          echo Deployed to staging
